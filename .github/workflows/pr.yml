@@ -1,0 +1,28 @@
+name: Build Docker image
+
+on:
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  build:
+    name: Build docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@31cebacef4805868f9ce9a0cb03ee36c32df2ac4
+        with:
+          images: halkeye/argocd
+
+      - name: Build Docker image
+        uses: docker/build-push-action@9f6f8c940b91232557f8699b21341a08624a8dce
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
