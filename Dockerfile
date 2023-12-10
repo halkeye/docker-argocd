@@ -1,17 +1,14 @@
-FROM viaductoss/ksops:v3.0.2 as ksops
-
 FROM argoproj/argocd:v2.6.15
 
 USER root
-
-COPY --from=ksops /go/src/github.com/viaduct-ai/kustomize-sops/kops /usr/local/bin/
-COPY --from=ksops /go/bin/kustomize /usr/local/bin/
 
 RUN apt-get update && \
     apt-get install -y \
         curl && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN curl -qsL https://github.com/viaduct-ai/kustomize-sops/releases/download/v4.3.0/ksops_4.3.0_Linux_x86_64.tar.gz | tar xfz - -C /usr/local/bin/ ksops
 
 USER argocd
 
@@ -20,5 +17,6 @@ ARG GCS_PLUGIN_REPO="https://github.com/hayorov/helm-gcs.git"
 
 RUN helm plugin install ${GCS_PLUGIN_REPO} --version ${GCS_PLUGIN_VERSION}
 
+ENV XDG_CONFIG_HOME="/home/argocd/.config"
 ENV HELM_PLUGINS="/home/argocd/.local/share/helm/plugins/"
 
