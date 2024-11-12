@@ -7,6 +7,16 @@
     {
       "customType": "regex",
       "fileMatch": [
+        "Dockerfile"
+      ],
+      "matchStrings": [
+        "_VERSION=\"(?<currentValue>.+?)\" # repo: (?<depName>.*)"
+      ],
+      "datasourceTemplate": "github-releases"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": [
         "^.github/workflows/build.yml$",
         "^Dockerfile$"
       ],
