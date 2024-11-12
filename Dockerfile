@@ -43,11 +43,11 @@ RUN \
   wget -qO- https://github.com/helmfile/vals/releases/download/v${VALS_VERSION}/vals_${VALS_VERSION}_linux_${ARCH}.tar.gz | tar -xzf- -C /custom-tools/ vals; \
   wget -qO- https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-${ARCH}.tar.gz | tar -xzf- -C /custom-tools/ doctl; \
   \
-  wget -qO /custom-tools/curl https://github.com/moparisthebest/static-curl/releases/latest/download/curl-amd64; \
-  wget -qO /custom-tools/sops https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux.amd64; \
+  wget -qO /custom-tools/curl https://github.com/moparisthebest/static-curl/releases/latest/download/curl-${ARCH}; \
+  wget -qO /custom-tools/sops https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux.${ARCH}; \
   wget -qO /custom-tools/jq https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64; \
-  wget -qO /custom-tools/kubectl https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl; \
-  wget -qO /custom-tools/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64; \
+  wget -qO /custom-tools/kubectl https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/${ARCH}/kubectl; \
+  wget -qO /custom-tools/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_${ARCH}; \
   \
   cp /custom-tools/helm-plugins/helm-secrets/scripts/wrapper/helm.sh /custom-tools/helm; \
   \
