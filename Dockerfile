@@ -1,6 +1,8 @@
 ARG UPSTREAM_VERSION="v2.13.0"
 FROM quay.io/argoproj/argocd:$UPSTREAM_VERSION
 
+ARG ARCH
+
 ENV HELM_PLUGINS=/custom-tools/helm-plugins/ \
   HELM_SECRETS_CURL_PATH=/custom-tools/curl \
   HELM_SECRETS_SOPS_PATH=/custom-tools/sops \
@@ -29,10 +31,11 @@ RUN apt-get update && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-
 SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
 RUN \
-  export ARCH=$(case $(uname -m) in x86_64) echo -n amd64 ;; aarch64) echo -n arm64 ;; *) echo -n $(uname -m) ;; esac); \
+  set -x; \
+  export DEB_ARCH=$(case ${ARCH:-$(uname -m)} in x86_64) echo -n amd64 ;; aarch64) echo -n arm64 ;; *) echo -n ${ARCH:-$(uname -m)} ;; esac); \
+  export ARCH=${ARCH:-$(uname -m)}; \
   export OS=$(uname | awk '{print tolower($0)}'); \
   \
   mkdir -p /custom-tools/helm-plugins; \
@@ -40,14 +43,14 @@ RUN \
   \
   wget -qO- https://github.com/jkroepke/helm-secrets/releases/download/v${HELM_SECRETS_VERSION}/helm-secrets.tar.gz | tar -C /custom-tools/helm-plugins -xzf-; \
   wget -qO- https://github.com/aslafy-z/helm-git/archive/refs/tags/v${HELM_GIT_VERSION}.tar.gz | tar --strip-components=1 -C /custom-tools/helm-plugins/helm-git -xzf-; \
-  wget -qO- https://github.com/helmfile/vals/releases/download/v${VALS_VERSION}/vals_${VALS_VERSION}_linux_${ARCH}.tar.gz | tar -xzf- -C /custom-tools/ vals; \
-  wget -qO- https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-${ARCH}.tar.gz | tar -xzf- -C /custom-tools/ doctl; \
+  wget -qO- https://github.com/helmfile/vals/releases/download/v${VALS_VERSION}/vals_${VALS_VERSION}_linux_${DEB_ARCH}.tar.gz | tar -xzf- -C /custom-tools/ vals; \
+  wget -qO- https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-${DEB_ARCH}.tar.gz | tar -xzf- -C /custom-tools/ doctl; \
   \
   wget -qO /custom-tools/curl https://github.com/moparisthebest/static-curl/releases/latest/download/curl-${ARCH}; \
-  wget -qO /custom-tools/sops https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux.${ARCH}; \
+  wget -qO /custom-tools/sops https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux.${DEB_ARCH}; \
   wget -qO /custom-tools/jq https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64; \
-  wget -qO /custom-tools/kubectl https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/${ARCH}/kubectl; \
-  wget -qO /custom-tools/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_${ARCH}; \
+  wget -qO /custom-tools/kubectl https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/${DEB_ARCH}/kubectl; \
+  wget -qO /custom-tools/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_${DEB_ARCH}; \
   \
   cp /custom-tools/helm-plugins/helm-secrets/scripts/wrapper/helm.sh /custom-tools/helm; \
   \
