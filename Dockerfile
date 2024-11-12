@@ -58,4 +58,4 @@ RUN \
   chmod a+x /custom-tools/kubectl; \
   chmod a+x /custom-tools/doctl
 
-USER argocd
+USER $ARGOCD_USER_ID
