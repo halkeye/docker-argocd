@@ -1,4 +1,4 @@
-ARG UPSTREAM_VERSION="v2.13.0"
+ARG UPSTREAM_VERSION=v2.13.1
 FROM quay.io/argoproj/argocd:$UPSTREAM_VERSION
 
 ARG ARCH
@@ -18,11 +18,11 @@ ENV HELM_PLUGINS=/custom-tools/helm-plugins/ \
 
 ARG HELM_SECRETS_VERSION="4.6.2" # repo: jkroepke/helm-secrets
 ARG HELM_GIT_VERSION="1.3.0" # repo: aslafy-z/helm-git
-ARG KUBECTL_VERSION="1.31.2" # repo: kubernetes/kubernetes
+ARG KUBECTL_VERSION="1.31.3" # repo: kubernetes/kubernetes
 ARG VALS_VERSION="0.37.8" # repo: helmfile/vals
-ARG SOPS_VERSION="3.9.1" # repo: getsops/sops
+ARG SOPS_VERSION="3.9.2" # repo: getsops/sops
 ARG JQ_VERSION="1.6" # repo: jqlang/jq
-ARG DOCTL_VERSION="1.118.0" # repo: digitalocean/doctl
+ARG DOCTL_VERSION="1.119.1" # repo: digitalocean/doctl
 
 USER root
 RUN apt-get update && \
