@@ -1,4 +1,6 @@
 ARG UPSTREAM_VERSION=v2.13.3
+FROM viaductoss/ksops:v4.3.2 as ksops
+
 FROM quay.io/argoproj/argocd:$UPSTREAM_VERSION
 
 ARG ARCH
@@ -32,6 +34,12 @@ RUN apt-get update && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
+
+COPY --from=ksops --chmod=755 /usr/local/bin/ksops /usr/local/bin/ksops
+COPY --from=ksops --chmod=755 /usr/local/bin/ksops /custom-tools/ksops
+COPY --from=ksops --chmod=755 /usr/local/bin/kustomize /usr/local/bin/kustomize
+COPY --from=ksops --chmod=755 /usr/local/bin/kustomize /custom-tools/kustomize
+
 RUN \
   set -x; \
   export DEB_ARCH=$(case ${ARCH:-$(uname -m)} in x86_64) echo -n amd64 ;; aarch64) echo -n arm64 ;; *) echo -n ${ARCH:-$(uname -m)} ;; esac); \
