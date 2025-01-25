@@ -21,8 +21,8 @@ ENV HELM_PLUGINS=/custom-tools/helm-plugins/ \
 ARG HELM_SECRETS_VERSION="4.6.2" # repo: jkroepke/helm-secrets
 ARG HELM_GIT_VERSION="1.3.0" # repo: aslafy-z/helm-git
 ARG KUBECTL_VERSION="1.32.1" # repo: kubernetes/kubernetes
-ARG VALS_VERSION="0.38.0" # repo: helmfile/vals
-ARG SOPS_VERSION="3.9.3" # repo: getsops/sops
+ARG VALS_VERSION="0.39.0" # repo: helmfile/vals
+ARG SOPS_VERSION="3.9.4" # repo: getsops/sops
 ARG JQ_VERSION="1.6" # repo: jqlang/jq
 ARG DOCTL_VERSION="1.120.2" # repo: digitalocean/doctl
 
