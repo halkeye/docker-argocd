@@ -1,5 +1,5 @@
-ARG UPSTREAM_VERSION=v2.13.3
-FROM viaductoss/ksops:v4.3.2 as ksops
+ARG UPSTREAM_VERSION=v2.13.4
+FROM viaductoss/ksops:v4.3.3 as ksops
 
 FROM quay.io/argoproj/argocd:$UPSTREAM_VERSION
 
