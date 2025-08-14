@@ -1,4 +1,4 @@
-ARG UPSTREAM_VERSION=v3.0.12
+ARG UPSTREAM_VERSION=v3.1.0
 FROM viaductoss/ksops:v4.3.3 AS ksops
 
 FROM quay.io/argoproj/argocd:$UPSTREAM_VERSION
@@ -20,11 +20,11 @@ ENV HELM_PLUGINS=/custom-tools/helm-plugins/ \
 
 ARG HELM_SECRETS_VERSION="4.6.5" # repo: jkroepke/helm-secrets
 ARG HELM_GIT_VERSION="1.4.0" # repo: aslafy-z/helm-git
-ARG KUBECTL_VERSION="1.33.3" # repo: kubernetes/kubernetes
+ARG KUBECTL_VERSION="1.33.4" # repo: kubernetes/kubernetes
 ARG VALS_VERSION="0.42.0" # repo: helmfile/vals
 ARG SOPS_VERSION="3.10.2" # repo: getsops/sops
 ARG JQ_VERSION="1.6" # repo: jqlang/jq
-ARG DOCTL_VERSION="1.137.0" # repo: digitalocean/doctl
+ARG DOCTL_VERSION="1.138.0" # repo: digitalocean/doctl
 
 USER root
 RUN apt-get update && \
