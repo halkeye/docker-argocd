@@ -43,7 +43,7 @@ COPY --from=ksops --chmod=755 /usr/local/bin/kustomize /custom-tools/kustomize
 RUN \
   set -x; \
   export DEB_ARCH=$(case ${ARCH:-$(uname -m)} in x86_64) echo -n amd64 ;; aarch64) echo -n arm64 ;; *) echo -n ${ARCH:-$(uname -m)} ;; esac); \
-  export CURL_ARCH=$(case ${ARCH:-$(uname -m)} in x86_64) echo -n amd64 ;; aarch64) echo -n aarch64 ;; *) echo -n ${ARCH:-$(uname -m)} ;; esac); \
+  export CURL_ARCH=$(case ${ARCH:-$(uname -m)} in x86_64) echo -n amd64 ;; aarch64) echo -n armhf ;; *) echo -n ${ARCH:-$(uname -m)} ;; esac); \
   export OS=$(uname | awk '{print tolower($0)}'); \
   \
   mkdir -p /custom-tools/helm-plugins; \
