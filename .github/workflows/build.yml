@@ -15,7 +15,7 @@ jobs:
       contents: write
       packages: write
     with:
-      upstream_version: "v3.2.0"
+      upstream_version: "v3.2.1"
       upstream_repo: "https://github.com/argoproj/argo-cd"
       run_number: "${{ github.run_number }}"
       username: "${{ github.repository_owner }}"
