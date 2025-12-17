@@ -20,7 +20,7 @@ ENV HELM_PLUGINS=/custom-tools/helm-plugins/ \
 
 ARG HELM_SECRETS_VERSION="4.7.4" # repo: jkroepke/helm-secrets
 ARG HELM_GIT_VERSION="1.5.1" # repo: aslafy-z/helm-git
-ARG KUBECTL_VERSION="1.34.3" # repo: kubernetes/kubernetes
+ARG KUBECTL_VERSION="1.35.0" # repo: kubernetes/kubernetes
 ARG VALS_VERSION="0.42.6" # repo: helmfile/vals
 ARG SOPS_VERSION="3.11.0" # repo: getsops/sops
 ARG JQ_VERSION="1.6" # repo: jqlang/jq
