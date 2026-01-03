@@ -1,4 +1,5 @@
 ARG UPSTREAM_VERSION=v3.2.3
+FROM registry.k8s.io/kustomize/kustomize:v5.8.0 AS kustomize
 FROM viaductoss/ksops:v4.4.0 AS ksops
 
 FROM quay.io/argoproj/argocd:$UPSTREAM_VERSION
@@ -37,8 +38,8 @@ SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
 
 COPY --from=ksops --chmod=755 /usr/local/bin/ksops /usr/local/bin/ksops
 COPY --from=ksops --chmod=755 /usr/local/bin/ksops /custom-tools/ksops
-COPY --from=ksops --chmod=755 /usr/local/bin/kustomize /usr/local/bin/kustomize
-COPY --from=ksops --chmod=755 /usr/local/bin/kustomize /custom-tools/kustomize
+COPY --from=kustomize --chmod=755 /app/kustomize /usr/local/bin/kustomize
+COPY --from=kustomize --chmod=755 /app/kustomize /custom-tools/kustomize
 
 RUN \
   set -x; \
