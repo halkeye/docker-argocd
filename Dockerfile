@@ -1,6 +1,6 @@
 ARG UPSTREAM_VERSION=v3.3.6
 FROM registry.k8s.io/kustomize/kustomize:v5.8.1 AS kustomize
-FROM viaductoss/ksops:v4.4.0 AS ksops
+FROM viaductoss/ksops:v4.5.0 AS ksops
 
 FROM quay.io/argoproj/argocd:$UPSTREAM_VERSION
 
