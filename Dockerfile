@@ -23,7 +23,7 @@ ARG HELM_SECRETS_VERSION="4.7.6" # repo: jkroepke/helm-secrets
 ARG HELM_GIT_VERSION="1.5.2" # repo: aslafy-z/helm-git
 ARG KUBECTL_VERSION="1.36.1" # repo: kubernetes/kubernetes
 ARG VALS_VERSION="0.44.0" # repo: helmfile/vals
-ARG SOPS_VERSION="3.13.0" # repo: getsops/sops
+ARG SOPS_VERSION="3.13.1" # repo: getsops/sops
 ARG JQ_VERSION="1.6" # repo: jqlang/jq
 ARG DOCTL_VERSION="1.159.0" # repo: digitalocean/doctl
 
