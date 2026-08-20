@@ -21,11 +21,11 @@ ENV HELM_PLUGINS=/custom-tools/helm-plugins/ \
 
 ARG HELM_SECRETS_VERSION="4.7.7" # repo: jkroepke/helm-secrets
 ARG HELM_GIT_VERSION="1.5.2" # repo: aslafy-z/helm-git
-ARG KUBECTL_VERSION="1.36.3" # repo: kubernetes/kubernetes
+ARG KUBECTL_VERSION="1.36.4" # repo: kubernetes/kubernetes
 ARG VALS_VERSION="0.46.0" # repo: helmfile/vals
 ARG SOPS_VERSION="3.13.3" # repo: getsops/sops
 ARG JQ_VERSION="1.6" # repo: jqlang/jq
-ARG DOCTL_VERSION="1.166.0" # repo: digitalocean/doctl
+ARG DOCTL_VERSION="1.167.0" # repo: digitalocean/doctl
 
 USER root
 RUN apt-get update && \
