@@ -1,4 +1,4 @@
-ARG UPSTREAM_VERSION=v3.5.3
+ARG UPSTREAM_VERSION=v3.5.4
 FROM registry.k8s.io/kustomize/kustomize:v5.8.1 AS kustomize
 FROM viaductoss/ksops:v4.5.1 AS ksops
 
@@ -19,13 +19,13 @@ ENV HELM_PLUGINS=/custom-tools/helm-plugins/ \
   HELM_SECRETS_DECRYPT_SECRETS_IN_TMP_DIR="true" \
   HELM_SECRETS_HELM_PATH=/usr/local/bin/helm
 
-ARG HELM_SECRETS_VERSION="4.7.8" # repo: jkroepke/helm-secrets
+ARG HELM_SECRETS_VERSION="4.7.9" # repo: jkroepke/helm-secrets
 ARG HELM_GIT_VERSION="1.5.2" # repo: aslafy-z/helm-git
 ARG KUBECTL_VERSION="1.37.1" # repo: kubernetes/kubernetes
 ARG VALS_VERSION="0.47.0" # repo: helmfile/vals
 ARG SOPS_VERSION="3.13.3" # repo: getsops/sops
 ARG JQ_VERSION="1.6" # repo: jqlang/jq
-ARG DOCTL_VERSION="1.175.0" # repo: digitalocean/doctl
+ARG DOCTL_VERSION="1.179.0" # repo: digitalocean/doctl
 
 USER root
 RUN apt-get update && \
