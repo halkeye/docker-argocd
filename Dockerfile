@@ -1,4 +1,4 @@
-ARG UPSTREAM_VERSION=v3.5.4
+ARG UPSTREAM_VERSION=v3.5.5
 FROM registry.k8s.io/kustomize/kustomize:v5.8.3 AS kustomize
 FROM viaductoss/ksops:v4.5.1 AS ksops
 
@@ -25,7 +25,7 @@ ARG KUBECTL_VERSION="1.37.1" # repo: kubernetes/kubernetes
 ARG VALS_VERSION="0.47.0" # repo: helmfile/vals
 ARG SOPS_VERSION="3.13.3" # repo: getsops/sops
 ARG JQ_VERSION="1.6" # repo: jqlang/jq
-ARG DOCTL_VERSION="1.181.0" # repo: digitalocean/doctl
+ARG DOCTL_VERSION="1.183.0" # repo: digitalocean/doctl
 
 USER root
 RUN apt-get update && \
