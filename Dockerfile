@@ -1,4 +1,4 @@
-ARG UPSTREAM_VERSION=v3.5.7
+ARG UPSTREAM_VERSION=v3.6.0
 FROM registry.k8s.io/kustomize/kustomize:v5.8.3 AS kustomize
 FROM viaductoss/ksops:v4.5.1 AS ksops
 
