@@ -25,7 +25,7 @@ ARG KUBECTL_VERSION="1.37.2" # repo: kubernetes/kubernetes
 ARG VALS_VERSION="0.51.1" # repo: helmfile/vals
 ARG SOPS_VERSION="3.13.3" # repo: getsops/sops
 ARG JQ_VERSION="1.6" # repo: jqlang/jq
-ARG DOCTL_VERSION="2.7.0" # repo: digitalocean/doctl
+ARG DOCTL_VERSION="2.8.0" # repo: digitalocean/doctl
 
 USER root
 RUN apt-get update && \
